@@ -33,6 +33,7 @@
 #ifdef CONFIG_MX28
 #include <asm/arch/regs-clkctrl-mx28.h>
 #include <asm/arch/regs-power-mx28.h>
+#include <asm/mach-imx/regs-pwm.h>
 #endif
 
 #endif	/* __IMX_REGS_H__ */
