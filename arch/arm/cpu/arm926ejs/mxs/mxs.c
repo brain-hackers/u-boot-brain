@@ -177,7 +177,8 @@ const char *get_imx_type(u32 imxtype)
 int print_cpuinfo(void)
 {
 	u32 cpurev;
-	struct mxs_spl_data *data = MXS_SPL_DATA;
+	uint8_t bootmode = 0, masked;
+	int i;
 
 	cpurev = get_cpu_rev();
 	printf("CPU:   Freescale i.MX%s rev%d.%d at %d MHz\n",
@@ -185,7 +186,17 @@ int print_cpuinfo(void)
 		(cpurev & 0x000F0) >> 4,
 		(cpurev & 0x0000F) >> 0,
 		mxc_get_clock(MXC_ARM_CLK) / 1000000);
-	printf("BOOT:  %s\n", mxs_boot_modes[data->boot_mode_idx].mode);
+
+#define GLOBAL_BOOT_MODE_ADDR 0x00019BF0
+	bootmode = __raw_readl(GLOBAL_BOOT_MODE_ADDR);
+
+	for (i = 0; i < ARRAY_SIZE(mxs_boot_modes); i++) {
+		masked = bootmode & mxs_boot_modes[i].boot_mask;
+		if (masked == mxs_boot_modes[i].boot_pads)
+			break;
+	}
+
+	printf("BOOT:  %s\n", mxs_boot_modes[i].mode);
 	return 0;
 }
 #endif

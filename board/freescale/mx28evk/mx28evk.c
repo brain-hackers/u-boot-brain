@@ -58,7 +58,8 @@ int board_early_init_f(void)
 
 int dram_init(void)
 {
-	return mxs_dram_init();
+	gd->ram_size = 0x8000000;  // 128MiB
+	return 0;
 }
 
 int board_init(void)
