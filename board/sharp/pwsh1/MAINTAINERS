@@ -1,0 +1,6 @@
+PW-SH1 BOARD
+M:	Takumi Sueda <puhitaku@gmail.com>
+S:	Maintained
+F:	board/sharp/pwsh1/
+F:	include/configs/pwsh1.h
+F:	configs/pwsh1_defconfig

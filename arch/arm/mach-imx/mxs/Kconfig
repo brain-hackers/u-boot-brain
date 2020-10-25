@@ -60,6 +60,10 @@ config TARGET_SC_SPS_1
 config TARGET_TS4600
 	bool "Support TS4600"
 
+config TARGET_PWSH1
+	bool "Support PW-SH1"
+	select BOARD_EARLY_INIT_F
+
 endchoice
 
 config SYS_SOC
@@ -70,5 +74,6 @@ source "board/freescale/mx28evk/Kconfig"
 source "board/ppcag/bg0900/Kconfig"
 source "board/schulercontrol/sc_sps_1/Kconfig"
 source "board/technologic/ts4600/Kconfig"
+source "board/sharp/pwsh1/Kconfig"
 
 endif
