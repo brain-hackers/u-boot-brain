@@ -273,10 +273,16 @@ const static uint32_t lpddr_dram_vals[] = {
 void mxs_adjust_memory_params(uint32_t *dram_vals)
 {
 	int i;
+	struct mxs_pinctrl_regs *pinctrl_regs =
+		(struct mxs_pinctrl_regs *)MXS_PINCTRL_BASE;
 
 	for (i = 0; i < ARRAY_SIZE(lpddr_dram_vals); i++) {
 		dram_vals[i] = lpddr_dram_vals[i];
 	}
+
+	/* Go into LPDDR mode */
+	writel(PINCTRL_EMI_DS_CTRL_DDR_MODE_DDR2,
+		&pinctrl_regs->hw_pinctrl_emi_ds_ctrl_clr);
 }
 
 void board_init_ll(const uint32_t arg, const uint32_t *resptr)
