@@ -39,6 +39,7 @@
 
 /* Framebuffer support */
 #ifdef CONFIG_VIDEO
+#define CONFIG_VIDEO_MXS
 #define CONFIG_VIDEO_MXS_MODE_SYSTEM
 #define CONFIG_VIDEO_LOGO
 #define CONFIG_SPLASH_SCREEN
