@@ -54,7 +54,7 @@ int board_early_init_f(void)
 
 int dram_init(void)
 {
-	gd->ram_size = 0x8000000;  // 128MiB
+	gd->ram_size = PHYS_SDRAM_1_SIZE;
 	return 0;
 }
 
@@ -67,79 +67,25 @@ int board_init(void)
 }
 
 #ifdef	CONFIG_CMD_MMC
-static int mx28evk_mmc_wp(int id)
+static int brain_mmc_wp(int id)
 {
 	return 0;
 }
 
-static int mx28evk_mmc_cd(int id)
+static int brain_mmc_cd(int id)
 {
 	return 1;
 }
 
 int board_mmc_init(bd_t *bis)
 {
-	mxsmmc_initialize(bis, 0, mx28evk_mmc_wp, mx28evk_mmc_cd);
-	mxsmmc_initialize(bis, 1, mx28evk_mmc_wp, mx28evk_mmc_cd);
+	mxsmmc_initialize(bis, 0, brain_mmc_wp, brain_mmc_cd);
+	mxsmmc_initialize(bis, 1, brain_mmc_wp, brain_mmc_cd);
 
 	/* Turn on the SD*/
 	gpio_direction_output(MX28_PAD_SSP2_SS2__GPIO_2_21, 0);
 	return 0;
 }
-#endif
-
-#ifdef	CONFIG_CMD_NET
-
-int board_eth_init(bd_t *bis)
-{
-	struct mxs_clkctrl_regs *clkctrl_regs =
-		(struct mxs_clkctrl_regs *)MXS_CLKCTRL_BASE;
-	struct eth_device *dev;
-	int ret;
-
-	ret = cpu_eth_init(bis);
-	if (ret)
-		return ret;
-
-	/* MX28EVK uses ENET_CLK PAD to drive FEC clock */
-	writel(CLKCTRL_ENET_TIME_SEL_RMII_CLK | CLKCTRL_ENET_CLK_OUT_EN,
-	       &clkctrl_regs->hw_clkctrl_enet);
-
-	/* Power-on FECs */
-	gpio_direction_output(MX28_PAD_SSP1_DATA3__GPIO_2_15, 0);
-
-	/* Reset FEC PHYs */
-	gpio_direction_output(MX28_PAD_ENET0_RX_CLK__GPIO_4_13, 0);
-	udelay(200);
-	gpio_set_value(MX28_PAD_ENET0_RX_CLK__GPIO_4_13, 1);
-
-	ret = fecmxc_initialize_multi(bis, 0, 0, MXS_ENET0_BASE);
-	if (ret) {
-		puts("FEC MXS: Unable to init FEC0\n");
-		return ret;
-	}
-
-	ret = fecmxc_initialize_multi(bis, 1, 3, MXS_ENET1_BASE);
-	if (ret) {
-		puts("FEC MXS: Unable to init FEC1\n");
-		return ret;
-	}
-
-	dev = eth_get_dev_by_name("FEC0");
-	if (!dev) {
-		puts("FEC MXS: Unable to get FEC0 device entry\n");
-		return -EINVAL;
-	}
-
-	dev = eth_get_dev_by_name("FEC1");
-	if (!dev) {
-		puts("FEC MXS: Unable to get FEC1 device entry\n");
-		return -EINVAL;
-	}
-
-	return ret;
-}
-
 #endif
 
 #ifdef CONFIG_VIDEO_MXS
