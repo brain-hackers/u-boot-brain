@@ -44,10 +44,10 @@ int board_early_init_f(void)
 	/* SSP1 clock at 96MHz */
 	mxs_set_sspclk(MXC_SSPCLK1, 96000, 0);
 
-#ifdef	CONFIG_CMD_USB
+#ifdef CONFIG_CMD_USB
 	mxs_iomux_setup_pad(MX28_PAD_SSP2_SS1__USB1_OVERCURRENT);
-	mxs_iomux_setup_pad(MX28_PAD_AUART2_RX__GPIO_3_8 |
-			MXS_PAD_4MA | MXS_PAD_3V3 | MXS_PAD_NOPULL);
+	mxs_iomux_setup_pad(MX28_PAD_AUART2_RX__GPIO_3_8 | MXS_PAD_4MA |
+			    MXS_PAD_3V3 | MXS_PAD_NOPULL);
 	gpio_direction_output(MX28_PAD_AUART2_RX__GPIO_3_8, 1);
 #endif
 
@@ -68,7 +68,7 @@ int board_init(void)
 	return 0;
 }
 
-#ifdef	CONFIG_CMD_MMC
+#ifdef CONFIG_CMD_MMC
 static int brain_mmc_wp(int id)
 {
 	return 0;
@@ -95,8 +95,8 @@ static const lcd_config_t lcd_config = {
 	.flip_x = ILI9805_DISABLE,
 	.flip_y = ILI9805_DISABLE,
 	.transpose = ILI9805_ENABLE,
-    .inversion = ILI9805_ENABLE,
-    .bgr = ILI9805_ENABLE,
+	.inversion = ILI9805_ENABLE,
+	.bgr = ILI9805_ENABLE,
 };
 
 lcd_config_t get_lcd_config()
