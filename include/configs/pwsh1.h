@@ -57,6 +57,9 @@
 
 /* Extra Environment */
 #define CONFIG_EXTRA_ENV_SETTINGS \
+	"stdin=serial\0" \
+	"stdout=serial,vga\0" \
+	"stderr=serial,vga\0" \
 	"videomode=video=ctfb:x:800,y:480,depth:16,pclk:30857,le:0,ri:0,up:0,lo:0,hs:0,vs:0,sync:0,vmode:0\0" \
 	"bootdelay=0\0" \
 	"image=zImage\0" \
