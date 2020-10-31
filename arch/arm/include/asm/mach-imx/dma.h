@@ -146,6 +146,8 @@ struct mxs_dma_chan {
 	struct list_head done;
 };
 
+int mxs_dma_disable(int chan);
+
 struct mxs_dma_desc *mxs_dma_desc_alloc(void);
 void mxs_dma_desc_free(struct mxs_dma_desc *);
 int mxs_dma_desc_append(int channel, struct mxs_dma_desc *pdesc);

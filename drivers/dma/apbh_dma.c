@@ -176,7 +176,7 @@ static int mxs_dma_enable(int channel)
  * state. It is unwise to call this function if there is ANY chance the hardware
  * is still processing a command.
  */
-static int mxs_dma_disable(int channel)
+int mxs_dma_disable(int channel)
 {
 	struct mxs_dma_chan *pchan;
 	struct mxs_apbh_regs *apbh_regs =
