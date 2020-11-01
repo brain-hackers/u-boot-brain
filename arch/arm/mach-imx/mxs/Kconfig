@@ -64,6 +64,10 @@ config TARGET_PWSH1
 	bool "Support PW-SH1"
 	select BOARD_EARLY_INIT_F
 
+config TARGET_PWSH2
+	bool "Support PW-SH2"
+	select BOARD_EARLY_INIT_F
+
 endchoice
 
 config SYS_SOC
@@ -75,5 +79,6 @@ source "board/ppcag/bg0900/Kconfig"
 source "board/schulercontrol/sc_sps_1/Kconfig"
 source "board/technologic/ts4600/Kconfig"
 source "board/sharp/pwsh1/Kconfig"
+source "board/sharp/pwsh2/Kconfig"
 
 endif

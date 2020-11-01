@@ -1,0 +1,13 @@
+SHARP Brain PW-SH2
+==================
+
+Support for PW-SH2.
+
+
+Files of the PW-SH2 port
+--------------------------
+
+arch/arm/cpu/arm926ejs/mxs/	- The CPU support code for the Freescale i.MX28
+arch/arm/include/asm/arch-mxs/	- Header files for the Freescale i.MX28
+board/sharp/pwsh2/	- PW-SH2 board specific files
+include/configs/pwsh2.h	- PW-SH2 configuration file
