@@ -101,6 +101,10 @@ void mxsfb_system_setup(void)
 		ili9805_mac |= 1 << ILI9805_MAC_BGR_OFFSET;
 	}
 
+	if (config.flip_y_gs) {
+		ili9805_mac |= 1 << ILI9805_MAC_GS_OFFSET;
+	}
+
 	mxsfb_write_byte(0x36, 0); /* Memory Access Control */
 	mxsfb_write_byte(ili9805_mac, 1);
 
@@ -108,15 +112,33 @@ void mxsfb_system_setup(void)
 		mxsfb_write_byte(0x21, 0); /* Display Inversion On */
 	}
 
-	for (i = 0; i < ARRAY_SIZE(regs_late); i++) {
-		mxsfb_write_byte(regs_late[i].payload, regs_late[i].data);
-		if (regs_late[i].delay)
-			mdelay(regs_late[i].delay);
-	}
+    mxsfb_write_byte(0x11, 0); /* Sleep Out */
+    mdelay(120);
+
+    mxsfb_write_byte(0x29, 0); /* Display On */
+    mdelay(20);
+
+    mxsfb_write_byte(0x2a, 0); /* Column Address Set */
+
+    mxsfb_write_byte(0x00, 1); /* Start Column in 2 Bytes */
+    mxsfb_write_byte(0x00, 1);
+
+    mxsfb_write_byte((config.width & 0xff00) >> 8, 1); /* End Column in 2 Bytes */
+    mxsfb_write_byte((config.width & 0x00ff) >> 0, 1);
+
+    mxsfb_write_byte(0x2b, 0); /* Page Address Set */
+
+    mxsfb_write_byte(0x00, 1); /* Start Page in 2 Bytes */
+    mxsfb_write_byte(0x00, 1);
+
+    mxsfb_write_byte((config.height & 0xff00) >> 8, 1); /* End Page in 2 Bytes */
+    mxsfb_write_byte((config.height & 0x00ff) >> 0, 1);
+
+    mxsfb_write_byte(0x2c, 0); /* Memory Write */
 
 	/* Fill black */
-	for (i = 0; i < 480; i++) {
-		for (j = 0; j < 800; j++) {
+	for (i = 0; i < config.height; i++) {
+		for (j = 0; j < config.width; j++) {
 			mxsfb_write_byte(0, 1);
 		}
 	}

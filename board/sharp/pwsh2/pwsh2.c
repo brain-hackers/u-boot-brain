@@ -92,6 +92,8 @@ int board_mmc_init(bd_t *bis)
 
 #ifdef CONFIG_VIDEO_MXS
 static const lcd_config_t lcd_config = {
+	.width = 800,
+	.height = 480,
 	.flip_x = ILI9805_DISABLE,
 	.flip_y = ILI9805_DISABLE,
 	.transpose = ILI9805_ENABLE,
