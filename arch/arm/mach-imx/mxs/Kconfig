@@ -76,6 +76,10 @@ config TARGET_PWSH4
 	bool "Support PW-SH4"
 	select BOARD_EARLY_INIT_F
 
+config TARGET_PWSH5
+	bool "Support PW-SH5"
+	select BOARD_EARLY_INIT_F
+
 endchoice
 
 config SYS_SOC
@@ -90,5 +94,6 @@ source "board/sharp/pwsh1/Kconfig"
 source "board/sharp/pwsh2/Kconfig"
 source "board/sharp/pwsh3/Kconfig"
 source "board/sharp/pwsh4/Kconfig"
+source "board/sharp/pwsh5/Kconfig"
 
 endif
