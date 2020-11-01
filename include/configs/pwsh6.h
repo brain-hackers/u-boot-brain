@@ -10,8 +10,8 @@
  * Copyright (C) 2011 Marek Vasut <marek.vasut@gmail.com>
  * on behalf of DENX Software Engineering GmbH
  */
-#ifndef __CONFIGS_PWSH1_H__
-#define __CONFIGS_PWSH1_H__
+#ifndef __CONFIGS_PWSH6_H__
+#define __CONFIGS_PWSH6_H__
 
 /* System configurations */
 #define CONFIG_MACH_TYPE	MACH_TYPE_MX28EVK
@@ -104,4 +104,4 @@
 /* The rest of the configuration is shared */
 #include <configs/mxs.h>
 
-#endif /* __CONFIGS_PWSH1_H__ */
+#endif /* __CONFIGS_PWSH6_H__ */
