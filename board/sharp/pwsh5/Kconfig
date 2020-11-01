@@ -1,0 +1,15 @@
+if TARGET_PWSH5
+
+config SYS_BOARD
+	default "pwsh5"
+
+config SYS_VENDOR
+	default "sharp"
+
+config SYS_SOC
+	default "mxs"
+
+config SYS_CONFIG_NAME
+	default "pwsh5"
+
+endif

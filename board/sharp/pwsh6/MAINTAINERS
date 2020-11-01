@@ -1,0 +1,6 @@
+PW-SH6 BOARD
+M:	Takumi Sueda <puhitaku@gmail.com>
+S:	Maintained
+F:	board/sharp/pwsh6/
+F:	include/configs/pwsh6.h
+F:	configs/pwsh6_defconfig

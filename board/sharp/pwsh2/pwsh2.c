@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0+
 /*
- * SHARP PW-SH1
+ * SHARP PW-SH2
  *
  * (C) Copyright 2020 Takumi Sueda.
  * Author: Takumi Sueda <puhitaku@gmail.com>

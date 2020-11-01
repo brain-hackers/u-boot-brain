@@ -1,0 +1,6 @@
+PW-SH5 BOARD
+M:	Takumi Sueda <puhitaku@gmail.com>
+S:	Maintained
+F:	board/sharp/pwsh5/
+F:	include/configs/pwsh5.h
+F:	configs/pwsh5_defconfig

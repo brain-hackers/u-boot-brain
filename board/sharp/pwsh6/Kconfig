@@ -1,0 +1,15 @@
+if TARGET_PWSH6
+
+config SYS_BOARD
+	default "pwsh6"
+
+config SYS_VENDOR
+	default "sharp"
+
+config SYS_SOC
+	default "mxs"
+
+config SYS_CONFIG_NAME
+	default "pwsh6"
+
+endif

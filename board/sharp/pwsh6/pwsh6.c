@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0+
 /*
- * SHARP PW-SH1
+ * SHARP PW-SH6
  *
  * (C) Copyright 2020 Takumi Sueda.
  * Author: Takumi Sueda <puhitaku@gmail.com>
@@ -92,13 +92,14 @@ int board_mmc_init(bd_t *bis)
 
 #ifdef CONFIG_VIDEO_MXS
 static const lcd_config_t lcd_config = {
-	.width = 800,
+	.width = 854,
 	.height = 480,
 	.flip_x = ILI9805_DISABLE,
 	.flip_y = ILI9805_DISABLE,
+	.flip_y_gs = ILI9805_ENABLE,
 	.transpose = ILI9805_ENABLE,
-	.inversion = ILI9805_ENABLE,
-	.bgr = ILI9805_ENABLE,
+	.inversion = ILI9805_DISABLE,
+	.bgr = ILI9805_DISABLE,
 };
 
 lcd_config_t get_lcd_config()

@@ -4,8 +4,11 @@
 #define __BRAIN_LCD_H__
 
 typedef struct {
+	int width;
+	int height;
 	int flip_x;
 	int flip_y;
+	int flip_y_gs;
 	int transpose;
 	int inversion;
 	int bgr;
@@ -81,16 +84,6 @@ const static lcd_regs_t regs_early[] = {
 		{ 0x00, 1, 0 }, { 0x00, 1, 0 },
 	{ 0x35, 0, 0 }, /* Tearing Effect Line On */
 		{ 0x00, 1, 0 },
-};
-
-const static lcd_regs_t regs_late[] = {
-	{ 0x11, 0, 120 }, /* Sleep Out */
-	{ 0x29, 0, 20 }, /* Display On */
-	{ 0x2a, 0, 0 }, /* Column Address Set */
-		{ 0x00, 1, 0 }, { 0x00, 1, 0 }, { 0x03, 1, 0 }, { 0x1f, 1, 0 },
-	{ 0x2b, 0, 0 }, /* Page Address Set */
-		{ 0x00, 1, 0 }, { 0x00, 1, 0 }, { 0x01, 1, 0 }, { 0xdf, 1, 0 },
-	{ 0x2c, 0, 0 }, /* Memory Write*/
 };
 
 /* clang-format on */

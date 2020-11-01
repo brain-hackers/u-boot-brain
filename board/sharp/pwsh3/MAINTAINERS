@@ -1,0 +1,6 @@
+PW-SH3 BOARD
+M:	Takumi Sueda <puhitaku@gmail.com>
+S:	Maintained
+F:	board/sharp/pwsh3/
+F:	include/configs/pwsh3.h
+F:	configs/pwsh3_defconfig

@@ -1,0 +1,13 @@
+SHARP Brain PW-SH3
+==================
+
+Support for PW-SH3.
+
+
+Files of the PW-SH3 port
+--------------------------
+
+arch/arm/cpu/arm926ejs/mxs/	- The CPU support code for the Freescale i.MX28
+arch/arm/include/asm/arch-mxs/	- Header files for the Freescale i.MX28
+board/sharp/pwsh3/	- PW-SH3 board specific files
+include/configs/pwsh3.h	- PW-SH3 configuration file
