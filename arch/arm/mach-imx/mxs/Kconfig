@@ -72,6 +72,10 @@ config TARGET_PWSH3
 	bool "Support PW-SH3"
 	select BOARD_EARLY_INIT_F
 
+config TARGET_PWSH4
+	bool "Support PW-SH4"
+	select BOARD_EARLY_INIT_F
+
 endchoice
 
 config SYS_SOC
@@ -85,5 +89,6 @@ source "board/technologic/ts4600/Kconfig"
 source "board/sharp/pwsh1/Kconfig"
 source "board/sharp/pwsh2/Kconfig"
 source "board/sharp/pwsh3/Kconfig"
+source "board/sharp/pwsh4/Kconfig"
 
 endif
