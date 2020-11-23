@@ -67,7 +67,7 @@
 	"bootdelay=0\0" \
 	"image=zImage\0" \
 	"console_mainline=ttyAMA0\0" \
-	"fdt_file=imx28-evk.dtb\0" \
+	"fdt_file=imx28-pwsh1.dtb\0" \
 	"fdt_addr=0x41000000\0" \
 	"boot_fdt=try\0" \
 	"mmcdev=1\0" \
