@@ -1,0 +1,6 @@
+PW-H1 BOARD
+M:	Takumi Sueda <puhitaku@gmail.com>
+S:	Maintained
+F:	board/sharp/pwh1/
+F:	include/configs/pwh1.h
+F:	configs/pwh1_defconfig

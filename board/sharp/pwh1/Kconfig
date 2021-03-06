@@ -1,0 +1,12 @@
+if TARGET_PWH1
+
+config SYS_BOARD
+	default "pwh1"
+
+config SYS_VENDOR
+	default "sharp"
+
+config SYS_CONFIG_NAME
+	default "pwh1"
+
+endif
