@@ -84,6 +84,10 @@ config TARGET_PWSH6
 	bool "Support PW-SH6"
 	select BOARD_EARLY_INIT_F
 
+config TARGET_PWG5300
+	bool "Support PW-G5300"
+	select BOARD_EARLY_INIT_F
+
 endchoice
 
 config SYS_SOC
@@ -100,5 +104,6 @@ source "board/sharp/pwsh3/Kconfig"
 source "board/sharp/pwsh4/Kconfig"
 source "board/sharp/pwsh5/Kconfig"
 source "board/sharp/pwsh6/Kconfig"
+source "board/sharp/pwg5300/Kconfig"
 
 endif
