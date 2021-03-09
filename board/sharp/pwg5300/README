@@ -1,0 +1,12 @@
+SHARP Brain PW-G5300
+====================
+
+Supported for PW-G5300.
+
+Files of the PW-G5300 port
+--------------------------
+
+arch/arm/cpu/arm926ejs/mxs/	- The CPU support code for the Freescale i.MX28
+arch/arm/include/asm/arch-mxs/	- Header files for the Freescale i.MX28
+board/sharp/pwg5300/	- PW-G5300 board specific files
+include/configs/pwg5300.h	- PW-G5300 configuration file

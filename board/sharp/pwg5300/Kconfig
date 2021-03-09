@@ -1,0 +1,15 @@
+if TARGET_PWG5300
+
+config SYS_BOARD
+	default "pwg5300"
+
+config SYS_VENDOR
+	default "sharp"
+
+config SYS_SOC
+	default "mxs"
+
+config SYS_CONFIG_NAME
+	default "pwg5300"
+
+endif

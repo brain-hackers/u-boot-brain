@@ -1,0 +1,6 @@
+PW-G5300 BOARD
+M:	Suguru Saito <sg.sgch07@gmail.com>
+S:	Maintained
+F:	board/sharp/pwg5300/
+F:	include/configs/pwg5300.h
+F:	configs/pwg5300_defconfig
