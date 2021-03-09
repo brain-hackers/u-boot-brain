@@ -40,22 +40,6 @@
 #define CONFIG_USB_MAX_CONTROLLER_COUNT	1
 #endif
 
-/* Framebuffer support */
-#ifdef CONFIG_VIDEO
-#define CONFIG_VIDEO_MXS
-#define CONFIG_VIDEO_MXS_MODE_SYSTEM
-#define CONFIG_VIDEO_LOGO
-#define CONFIG_VIDEO_BMP_LOGO
-#define CONFIG_HIDE_LOGO_VERSION
-#define CONFIG_SPLASH_SCREEN
-#define CONFIG_BMP_16BPP
-#define CONFIG_VIDEO_BMP_RLE8
-#define CONFIG_VIDEO_BMP_GZIP
-#define CONFIG_SYS_VIDEO_LOGO_MAX_SIZE	(512 << 10)
-#define CONFIG_VIDEO_FONT_6X11
-#define LCD_BPP LCD_COLOR16
-#endif
-
 /* Boot Linux */
 #define CONFIG_BOOTFILE		"uImage"
 #define CONFIG_LOADADDR		0x42000000
@@ -64,9 +48,8 @@
 /* Extra Environment */
 #define CONFIG_EXTRA_ENV_SETTINGS \
 	"stdin=serial\0" \
-	"stdout=serial,vga\0" \
-	"stderr=serial,vga\0" \
-	"videomode=video=ctfb:x:800,y:480,depth:16,pclk:30857,le:0,ri:0,up:0,lo:0,hs:0,vs:0,sync:0,vmode:0\0" \
+	"stdout=serial\0" \
+	"stderr=serial\0" \
 	"bootdelay=0\0" \
 	"image=zImage\0" \
 	"console_mainline=ttyAMA0\0" \
