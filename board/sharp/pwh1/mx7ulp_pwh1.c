@@ -44,6 +44,7 @@ int board_early_init_f(void)
 int misc_init_f(void)
 {
 	//int base = 0x67800000, i, j, w;
+	printf("Hello world from misc_init_f! %d\n", count++);
 
 	/*
 	// Memory dump
@@ -63,6 +64,7 @@ int misc_init_f(void)
 
 int board_init(void)
 {
+	printf("Hello world from board_init!\n");
 	/* address of boot parameters */
 	gd->bd->bi_boot_params = PHYS_SDRAM + 0x100;
 
