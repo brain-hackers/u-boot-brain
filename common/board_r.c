@@ -660,6 +660,7 @@ static int run_main_loop(void)
  */
 static init_fnc_t init_sequence_r[] = {
 	initr_trace,
+	misc_init_f,
 	initr_reloc,
 	/* TODO: could x86/PPC have this also perhaps? */
 #ifdef CONFIG_ARM
@@ -676,10 +677,15 @@ static init_fnc_t init_sequence_r[] = {
 	initr_unlock_ram_in_cache,
 #endif
 	initr_barrier,
+	misc_init_f,
 	initr_malloc,
+	misc_init_f,
 	log_init,
+	misc_init_f,
 	initr_bootstage,	/* Needs malloc() but has its own timer */
+	misc_init_f,
 	initr_console_record,
+	misc_init_f,
 #ifdef CONFIG_SYS_NONCACHED_MEMORY
 	initr_noncached,
 #endif
