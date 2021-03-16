@@ -1,4 +1,3 @@
-#define DEBUG
 #include <common.h>
 
 #if defined(CONFIG_UNIT_TEST)
@@ -609,7 +608,6 @@ void mem_malloc_init(ulong start, ulong size)
 	      mem_malloc_end);
 #ifdef CONFIG_SYS_MALLOC_CLEAR_ON_INIT
 	memset((void *)mem_malloc_start, 0x0, size);
-	debug("cleared!\n");
 #endif
 	malloc_bin_reloc();
 }
