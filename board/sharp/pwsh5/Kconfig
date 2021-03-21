@@ -13,3 +13,5 @@ config SYS_CONFIG_NAME
 	default "pwsh5"
 
 endif
+
+source "board/sharp/common/Kconfig"
