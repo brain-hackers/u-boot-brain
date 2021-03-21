@@ -79,12 +79,23 @@ void mxsfb_system_setup(void)
 	gpio_direction_output(MX28_PAD_ENET_CLK__GPIO_4_16, 1);
 	mdelay(20);
 
+#ifdef CONFIG_BRAIN_2G
+	/* Reset LCD Controller */
+	writel(LCDIF_CTRL1_RESET, &lcdif->hw_lcdif_ctrl1_set);
+	mdelay(30);
+	writel(LCDIF_CTRL1_RESET, &lcdif->hw_lcdif_ctrl1_clr);
+	mdelay(30);
+	writel(LCDIF_CTRL1_RESET, &lcdif->hw_lcdif_ctrl1_set);
+	mdelay(30);
+#endif
+
 	for (i = 0; i < ARRAY_SIZE(regs_early); i++) {
 		mxsfb_write_byte(regs_early[i].payload, regs_early[i].data);
 		if (regs_early[i].delay)
 			mdelay(regs_early[i].delay);
 	}
 
+#ifndef CONFIG_BRAIN_2G
 	if (config.flip_x) {
 		ili9805_mac |= 1 << ILI9805_MAC_MX_OFFSET;
 	}
@@ -111,9 +122,15 @@ void mxsfb_system_setup(void)
 	if (config.inversion) {
 		mxsfb_write_byte(0x21, 0); /* Display Inversion On */
 	}
+#endif
 
     mxsfb_write_byte(0x11, 0); /* Sleep Out */
     mdelay(120);
+
+#ifdef CONFIG_BRAIN_2G
+	mxsfb_write_byte(0x34, 0);
+	mdelay(30);
+#endif
 
     mxsfb_write_byte(0x29, 0); /* Display On */
     mdelay(20);
@@ -123,27 +140,43 @@ void mxsfb_system_setup(void)
     mxsfb_write_byte(0x00, 1); /* Start Column in 2 Bytes */
     mxsfb_write_byte(0x00, 1);
 
+#ifndef CONFIG_BRAIN_2G
     mxsfb_write_byte((config.width & 0xff00) >> 8, 1); /* End Column in 2 Bytes */
     mxsfb_write_byte((config.width & 0x00ff) >> 0, 1);
+#else
+	mxsfb_write_byte((config.height & 0xff00) >> 8, 1); /* End Column in 2 Bytes */
+	mxsfb_write_byte((config.height & 0x00ff) >> 0, 1);
+#endif
 
     mxsfb_write_byte(0x2b, 0); /* Page Address Set */
 
     mxsfb_write_byte(0x00, 1); /* Start Page in 2 Bytes */
     mxsfb_write_byte(0x00, 1);
 
+#ifndef CONFIG_BRAIN_2G
     mxsfb_write_byte((config.height & 0xff00) >> 8, 1); /* End Page in 2 Bytes */
     mxsfb_write_byte((config.height & 0x00ff) >> 0, 1);
+#else
+	mxsfb_write_byte((config.width & 0xff00) >> 8, 1); /* End Page in 2 Bytes */
+    mxsfb_write_byte((config.width & 0x00ff) >> 0, 1);
+#endif
 
     mxsfb_write_byte(0x2c, 0); /* Memory Write */
 
+#ifndef CONFIG_BRAIN_2G
 	/* Fill black */
 	for (i = 0; i < config.height; i++) {
 		for (j = 0; j < config.width; j++) {
 			mxsfb_write_byte(0, 1);
 		}
 	}
+#endif
 
+#ifndef CONFIG_BRAIN_2G
 	writel(valid_data, &lcdif->hw_lcdif_ctrl1);
+#else
+	writel(valid_data | LCDIF_CTRL1_RESET, &lcdif->hw_lcdif_ctrl1);
+#endif
 
 	writel(LCDIF_CTRL_LCDIF_MASTER | LCDIF_CTRL_DATA_SELECT,
 	       &lcdif->hw_lcdif_ctrl_set);
