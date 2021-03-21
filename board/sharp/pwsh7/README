@@ -1,0 +1,13 @@
+SHARP Brain PW-SH7
+==================
+
+Support for PW-SH7.
+
+
+Files of the PW-SH7 port
+--------------------------
+
+arch/arm/cpu/arm926ejs/mxs/	- The CPU support code for the Freescale i.MX28
+arch/arm/include/asm/arch-mxs/	- Header files for the Freescale i.MX28
+board/sharp/pwsh7/	- PW-SH7 board specific files
+include/configs/pwsh7.h	- PW-SH7 configuration file
