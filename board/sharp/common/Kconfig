@@ -1,0 +1,12 @@
+config BRAIN_2G
+	bool
+	default y if TARGET_PWG5300
+
+config BRAIN_3G
+	bool
+	default y if TARGET_PWSH1 || TARGET_PWSH2
+
+config BRAIN_4G
+	bool
+	default y if TARGET_PWSH3 || TARGET_PWSH4 || TARGET_PWSH5 || \
+	TARGET_PWSH6
