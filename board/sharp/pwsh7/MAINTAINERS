@@ -1,0 +1,6 @@
+PW-SH7 BOARD
+M:	Takumi Sueda <puhitaku@gmail.com>
+S:	Maintained
+F:	board/sharp/pwsh7/
+F:	include/configs/pwsh7.h
+F:	configs/pwsh7_defconfig

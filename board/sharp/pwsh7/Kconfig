@@ -1,0 +1,17 @@
+if TARGET_PWSH7
+
+config SYS_BOARD
+	default "pwsh7"
+
+config SYS_VENDOR
+	default "sharp"
+
+config SYS_SOC
+	default "mxs"
+
+config SYS_CONFIG_NAME
+	default "pwsh7"
+
+endif
+
+source "board/sharp/common/Kconfig"
