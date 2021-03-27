@@ -49,10 +49,15 @@ void mxsfb_system_setup(void)
 	struct mxs_clkctrl_regs *xtal =
 		(struct mxs_clkctrl_regs *)MXS_CLKCTRL_BASE;
 	struct mxs_pwm_regs *pwm = (struct mxs_pwm_regs *)MXS_PWM_BASE;
+
+#ifndef CONFIG_BRAIN_2G
 	int i, j;
+	uint8_t ili9805_mac = 0;
+#else
+	int i;
+#endif
 	uint32_t valid_data;
 
-	uint8_t ili9805_mac = 0;
 	lcd_config_t config = get_lcd_config();
 
 	valid_data = readl(&lcdif->hw_lcdif_ctrl1) &
