@@ -50,7 +50,7 @@ void mxsfb_system_setup(void)
 		(struct mxs_clkctrl_regs *)MXS_CLKCTRL_BASE;
 	struct mxs_pwm_regs *pwm = (struct mxs_pwm_regs *)MXS_PWM_BASE;
 
-#ifndef CONFIG_BRAIN_2G
+#ifdef CONFIG_BRAIN_3G_4G
 	int i, j;
 	uint8_t ili9805_mac = 0;
 #else
@@ -100,7 +100,7 @@ void mxsfb_system_setup(void)
 			mdelay(regs_early[i].delay);
 	}
 
-#ifndef CONFIG_BRAIN_2G
+#ifdef CONFIG_BRAIN_3G_4G
 	if (config.flip_x) {
 		ili9805_mac |= 1 << ILI9805_MAC_MX_OFFSET;
 	}
@@ -145,7 +145,7 @@ void mxsfb_system_setup(void)
     mxsfb_write_byte(0x00, 1); /* Start Column in 2 Bytes */
     mxsfb_write_byte(0x00, 1);
 
-#ifndef CONFIG_BRAIN_2G
+#ifdef CONFIG_BRAIN_3G_4G
     mxsfb_write_byte((config.width & 0xff00) >> 8, 1); /* End Column in 2 Bytes */
     mxsfb_write_byte((config.width & 0x00ff) >> 0, 1);
 #else
@@ -158,7 +158,7 @@ void mxsfb_system_setup(void)
     mxsfb_write_byte(0x00, 1); /* Start Page in 2 Bytes */
     mxsfb_write_byte(0x00, 1);
 
-#ifndef CONFIG_BRAIN_2G
+#ifdef CONFIG_BRAIN_3G_4G
     mxsfb_write_byte((config.height & 0xff00) >> 8, 1); /* End Page in 2 Bytes */
     mxsfb_write_byte((config.height & 0x00ff) >> 0, 1);
 #else
@@ -168,7 +168,7 @@ void mxsfb_system_setup(void)
 
     mxsfb_write_byte(0x2c, 0); /* Memory Write */
 
-#ifndef CONFIG_BRAIN_2G
+#ifdef CONFIG_BRAIN_3G_4G
 	/* Fill black */
 	for (i = 0; i < config.height; i++) {
 		for (j = 0; j < config.width; j++) {
@@ -177,7 +177,7 @@ void mxsfb_system_setup(void)
 	}
 #endif
 
-#ifndef CONFIG_BRAIN_2G
+#ifdef CONFIG_BRAIN_3G_4G
 	writel(valid_data, &lcdif->hw_lcdif_ctrl1);
 #else
 	writel(valid_data | LCDIF_CTRL1_RESET, &lcdif->hw_lcdif_ctrl1);

@@ -35,7 +35,7 @@ typedef struct {
 } lcd_regs_t;
 
 /* clang-format off */
-#ifndef CONFIG_BRAIN_2G
+#ifdef CONFIG_BRAIN_3G_4G
 const static lcd_regs_t regs_early[] = {
 	{ 0xff, 0, 0 }, /* EXTC Command Set Enable */
 		{ 0xff, 1, 0 }, { 0x98, 1, 0 }, { 0x05, 1, 0 },
