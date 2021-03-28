@@ -28,6 +28,8 @@
 #include <netdev.h>
 #include <errno.h>
 
+#include "../common/lcd.h"
+
 DECLARE_GLOBAL_DATA_PTR;
 
 /*
@@ -92,5 +94,17 @@ int board_mmc_init(bd_t *bis)
 	/* Turn on the SD */
 	gpio_direction_output(MX28_PAD_SSP2_SS2__GPIO_2_21, 0);
 	return 0;
+}
+#endif
+
+#ifdef CONFIG_VIDEO_MXS
+static const lcd_config_t lcd_config = {
+	.width = 480,
+	.height = 320,
+};
+
+lcd_config_t get_lcd_config()
+{
+	return lcd_config;
 }
 #endif
