@@ -93,6 +93,15 @@
 			gpio = <&gpio2 11 GPIO_ACTIVE_HIGH>;
 			enable-active-high;
 		};
+
+		reg_vsd_1v8: regulator@3 {
+			compatible = "regulator-fixed";
+			reg = <3>;
+			regulator-name = "VSD_1V8";
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			enable-active-high;
+		};
 	};
 
 	extcon_usb1: extcon_usb1 {
@@ -285,6 +294,21 @@
 			>;
 		};
 
+		pinctrl_usdhc1_8bit: usdhc1grp_8bit {
+			fsl,pins = <
+				ULP1_PAD_PTE3__SDHC1_CMD	0x803
+				ULP1_PAD_PTE2__SDHC1_CLK	0x802
+				ULP1_PAD_PTE9__SDHC1_D7		0x803
+				ULP1_PAD_PTE8__SDHC1_D6		0x803
+				ULP1_PAD_PTE7__SDHC1_D5		0x803
+				ULP1_PAD_PTE6__SDHC1_D4		0x803
+				ULP1_PAD_PTE4__SDHC1_D3		0x803
+				ULP1_PAD_PTE5__SDHC1_D2		0x803
+				ULP1_PAD_PTE0__SDHC1_D1		0x803
+				ULP1_PAD_PTE1__SDHC1_D0		0x803
+			>;
+		};
+
 		pinctrl_usdhc1_rst: usdhc1grp_rst {
 			fsl,pins = <
 				ULP1_PAD_PTE11__PTE11			0x30100	/* USDHC1 RST */
@@ -422,5 +446,17 @@
 	cd-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
 	vmmc-supply = <&reg_vsd_3v3>;
 	vqmmc-supply = <&vldo2_reg>;
+	status = "okay";
+};
+
+&usdhc1 {
+	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
+	pinctrl-0 = <&pinctrl_usdhc1_8bit>;
+	pinctrl-1 = <&pinctrl_usdhc1_8bit>;
+	pinctrl-2 = <&pinctrl_usdhc1_8bit>;
+	pinctrl-3 = <&pinctrl_usdhc1_8bit>;
+
+	vmmc-supply = <&reg_vsd_1v8>;
+	vqmmc-supply = <&vldo1_reg>;
 	status = "okay";
 };
